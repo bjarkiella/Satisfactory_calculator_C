@@ -11,16 +11,27 @@ namespace Satisfactory_calculator_C.Utilities
 
 
 {
-    public class ReadExcel(string pathin, string sheetname)
+    public class ReadExcel
     {
-        // Initializing
-        private string PathIn { get; } = pathin;
-        private string SheetName {get; } = sheetname;
+        // Class properties
+        private string PathIn {get;}
+        private string SheetName {get;}
 
-        // Private Method for reading the excel file and returning it
-
+        // Constructor
+        public ReadExcel(string pathin, string sheetname) {
+            PathIn = pathin;
+            SheetName = sheetname;
+        }
 
         // Public Method that returns a specific sheet within the excel file
+        public ExcelWorksheet WorkSheet() {
+            var FileInfo = new FileInfo(PathIn);
+            var CurrentExcelFile = new ExcelPackage(FileInfo); 
+            var WorkSheet = CurrentExcelFile.Workbook.Worksheets[SheetName];
+            return WorkSheet;
+        }
+        
+        // Some filter methods here?
 
     }
 }
